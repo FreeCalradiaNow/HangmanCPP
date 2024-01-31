@@ -10,7 +10,7 @@ int main()
 {
 #pragma region Textblocks/ Style
 
-    //Style elements
+    // Style elements
     string mFHeader = "                               ----->   This is Hangman Fruity Shores  <-----                              ";
     string mFLong = "==================================================================================================================";
     string mFSidebarL = "\n||  ";
@@ -18,7 +18,7 @@ int main()
     string crlf = "\n";
     string tab = "\t";
 
-    //Reuseable textblocks
+    // Reuseable textblocks
     string legoText1 = "Guess the word: ";
     string legoText2 = "You still have ";
     string legoText3 = " failed attempts left.";
@@ -28,9 +28,10 @@ int main()
 
 #pragma region Properties
 
-    //Properties
+    // Properties
     string fruitToFind;
     string spoofedFruit;
+    int tryCounter;
 
     bool wordRevealed = false;
     bool gameOver = false;
@@ -39,7 +40,7 @@ int main()
 
 #pragma region Start Message
 
-    //Welcome/ Introduction
+    // Welcome/ Introduction
     cout << mFLong << mFSidebarL + mFHeader + mFSidebarR << endl;
     cout << mFSidebarL + "You have to guess a fruit by guessing what letters the word may contain while you have still attempts left." + mFSidebarR << "\n" + mFLong + "\n\n\n" << endl;
 
@@ -47,7 +48,7 @@ int main()
 
 #pragma region Random word/ spoofing
 
-    //Fruit array fruits
+    // Fruit array fruits
     string fruits[] = {
         "apple", "apricot", "avocado", "banana", "bilberry", "blackberry", "blackcurrant", "blood orange", "blueberry", "boysenberry", "breadfruit", "cantaloupe", "cherimoya", "cherry", 
         "chico fruit", "cloudberry", "coconut", "cranberry", "cucumber", "currant", "custard apple", "damson", "date", "dragonfruit", "durian", "grape", "grapefruit", "guava", "honeydew", 
@@ -65,7 +66,7 @@ int main()
 
     fruitToFind = fruits[randomIndex];
     
-    //spoofedFruit gets \"_\" for each letter in fruitToFind. Whitespaces are excluded
+    // SpoofedFruit gets \"_\" for each letter in fruitToFind. Whitespaces are excluded
     for (char c : fruitToFind) {
         if (c != ' ') {
             spoofedFruit += '_';
@@ -75,17 +76,35 @@ int main()
         }
     }
 
+    // Defined counter
+    int fruitLength = fruitToFind.length();
+    if (fruitLength > 8 && fruitLength < 14) {
+        tryCounter = fruitLength + 1;
+    }
+    if (fruitLength <= 8) {
+        tryCounter = 7;
+    }
+    else {
+        tryCounter = 15;
+    }
+
 #pragma endregion
+
+
+
+#pragma endregion
+
+
 
 #pragma region DEBUG INFOBOX
 
     //? This infos are just for development - comment out ir #ifdebig them before use
     // 
     cout << "DEBUG INFO" << endl;
-    //fruitToFind
+    // fruitToFind
     cout << "Variable:" + tab + "fruitToFind" + crlf << "Actual value:" + tab + fruitToFind + crlf << "Description:" + tab + 
         "Variable gets randomized value from array." + crlf<< endl;
-    //spoofedFruit
+    // spoofedFruit
     cout << "Variable:" + tab + "spoofedFruit" + crlf << "Actual value:" + tab + spoofedFruit + crlf << "Description:" + tab + 
         "Variable gets \"_\" for each letter in fruitToFind. Whitespaces are excluded" + crlf << endl;
 
