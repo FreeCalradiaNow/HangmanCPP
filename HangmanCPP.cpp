@@ -32,6 +32,7 @@ int main()
     string fruitToFind;
     string spoofedFruit;
     string userInputRaw;
+    string tryPond;
     int tryCounter;
 
     bool wordRevealed = false;
@@ -108,7 +109,7 @@ int main()
             }
         }
         if (triedThatBefore) {
-            cout << "Get your shit together - you already hit that damn letter before!" << endl;
+            cout << crlf << "Get your shit together - you already hit that damn letter before!" << endl;
         }
         else {
             bool trySuccess = false;
@@ -120,10 +121,11 @@ int main()
                         spoofedFruit[i] = userInputRefined[0];
                     }
                 }
-                legoText4 = "\nNice job - what took you so long?\n";
+                legoText4 = "Nice job - what took you so long?";
             }
             if (!trySuccess) {
                 tryCounter = tryCounter - 1;
+                tryPond = tryPond.append(userInputRefined + " ");
                 legoText4 = "\nBra..\nThat was not right if that wasnt clear yet thought!\n";
                 if (tryCounter < 1) {
                     gameOver = true;
@@ -132,15 +134,16 @@ int main()
             if (spoofedFruit.find("_") == string::npos) {
                 wordRevealed = true;
             }
-            cout << legoText1 + spoofedFruit + legoText2 << tryCounter << legoText3 << legoText4 << endl;
+            cout << crlf << legoText1 + spoofedFruit + legoText2 << tryCounter << legoText3 << crlf << legoText4 << crlf << endl;
+            cout << "Letters you tried before: " << tryPond << endl;
         }
     }
 
     if (gameOver) {
-        cout << "You lost!\nDid you visualized that when you started this?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+        cout << "You lost!\nDid you visualized that when you started this?" << crlf << crlf << crlf << crlf << crlf << crlf << crlf << endl;
     }
     if (wordRevealed) {
-        cout << "You won! Real Chadman you are.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+        cout << "You won! Real Chadman you are." << crlf << crlf << crlf << crlf << crlf << crlf << crlf << endl;
     }
 
 #pragma endregion
@@ -156,6 +159,16 @@ int main()
     // spoofedFruit
     cout << "Variable:" + tab + "spoofedFruit" + crlf << "Actual value:" + tab + spoofedFruit + crlf << "Description:" + tab + 
         "Variable gets \"_\" for each letter in fruitToFind. Whitespaces are excluded" + crlf << endl;
+    // userInputRaw
+    // userInputRefined
+    // tryCounter
+    // posHit
+    // trySuccess
+    // tryPond
+    // wordRevealed
+    // gameOver
+    // size
+    // fruitLength
 
 #pragma endregion
 
