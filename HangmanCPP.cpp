@@ -20,7 +20,7 @@ int main()
 
     // Reuseable textblocks
     string legoText1 = "Guess the word: ";
-    string legoText2 = "You still have ";
+    string legoText2 = " You still have ";
     string legoText3 = " failed attempts left.";
     string legoText4 = "";
 
@@ -31,6 +31,7 @@ int main()
     // Properties
     string fruitToFind;
     string spoofedFruit;
+    string userInputRaw;
     int tryCounter;
 
     bool wordRevealed = false;
@@ -90,11 +91,59 @@ int main()
 
 #pragma endregion
 
+#pragma region Game
 
+    while (!wordRevealed && !gameOver) {
+        cin >> userInputRaw;
+        string userInputRefined;
+        bool triedThatBefore = false;
+        if (!userInputRaw.empty()) {
+            char firstChar = tolower(userInputRaw[0]);
+            userInputRefined += firstChar;
+            for (string::size_type i = 0; i < fruitLength; ++i) {
+                if (spoofedFruit[i] == userInputRefined[0]) {
+                    triedThatBefore = true;
+                    break;
+                }
+            }
+        }
+        if (triedThatBefore) {
+            cout << "Get your shit together - you already hit that damn letter before!" << endl;
+        }
+        else {
+            bool trySuccess = false;
+            int posHit = fruitToFind.find(userInputRefined);
+            if (posHit != string::npos) {
+                trySuccess = true;
+                for (string::size_type i = 0; i < fruitLength; ++i) {
+                    if (fruitToFind[i] == userInputRefined[0]) {
+                        spoofedFruit[i] = userInputRefined[0];
+                    }
+                }
+                legoText4 = "\nNice job - what took you so long?\n";
+            }
+            if (!trySuccess) {
+                tryCounter = tryCounter - 1;
+                legoText4 = "\nBra..\nThat was not right if that wasnt clear yet thought!\n";
+                if (tryCounter < 1) {
+                    gameOver = true;
+                }
+            }
+            if (spoofedFruit.find("_") == string::npos) {
+                wordRevealed = true;
+            }
+            cout << legoText1 + spoofedFruit + legoText2 << tryCounter << legoText3 << legoText4 << endl;
+        }
+    }
+
+    if (gameOver) {
+        cout << "You lost!\nDid you visualized that when you started this?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+    }
+    if (wordRevealed) {
+        cout << "You won! Real Chadman you are.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" << endl;
+    }
 
 #pragma endregion
-
-
 
 #pragma region DEBUG INFOBOX
 
@@ -108,13 +157,7 @@ int main()
     cout << "Variable:" + tab + "spoofedFruit" + crlf << "Actual value:" + tab + spoofedFruit + crlf << "Description:" + tab + 
         "Variable gets \"_\" for each letter in fruitToFind. Whitespaces are excluded" + crlf << endl;
 
-
 #pragma endregion
-
-
-
-
-
 
     return 0;
 }
