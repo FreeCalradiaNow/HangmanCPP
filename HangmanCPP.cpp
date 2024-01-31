@@ -48,7 +48,7 @@ int main()
 #pragma region Random word/ spoofing
 
     //Fruit array fruits
-    string fruits[100] = {
+    string fruits[] = {
         "apple", "apricot", "avocado", "banana", "bilberry", "blackberry", "blackcurrant", "blood orange", "blueberry", "boysenberry", "breadfruit", "cantaloupe", "cherimoya", "cherry", 
         "chico fruit", "cloudberry", "coconut", "cranberry", "cucumber", "currant", "custard apple", "damson", "date", "dragonfruit", "durian", "grape", "grapefruit", "guava", "honeydew", 
         "huckleberry", "jackfruit", "jambul", "jujube", "kiwano", "kiwi", "kumquat", "lemon", "lime", "loquat", "longan", "lychee", "mandarine", "mango", "mangosteen", "marionberry",
@@ -57,10 +57,11 @@ int main()
         "ugli fruit", "watermelon", "white currant", "white sapote", "yuzu", "zucchini", "acai" 
     };
 
+    int size = sizeof(fruits) / sizeof(fruits[0]);
     // Seed the random number generator
-    srand(time(nullptr));
+    srand(time(NULL));
     // Pick a random index from the array
-    int randomIndex = rand() % 5;
+    int randomIndex = rand() % size;
 
     fruitToFind = fruits[randomIndex];
     
