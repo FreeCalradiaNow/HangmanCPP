@@ -90,12 +90,6 @@ int main()
 
 #pragma endregion
 
-
-
-#pragma endregion
-
-
-
 #pragma region DEBUG INFOBOX
 
     //? This infos are just for development - comment out ir #ifdebig them before use
@@ -108,13 +102,7 @@ int main()
     cout << "Variable:" + tab + "spoofedFruit" + crlf << "Actual value:" + tab + spoofedFruit + crlf << "Description:" + tab + 
         "Variable gets \"_\" for each letter in fruitToFind. Whitespaces are excluded" + crlf << endl;
 
-
 #pragma endregion
-
-
-
-
-
 
     return 0;
 }
