@@ -1,31 +1,39 @@
 #pragma once
-#include <iostream>
 #include <string>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
-int main()
-{
 #pragma region Textblocks/ Style
 
-    // Style elements
-    string mFHeader = "                               ----->   This is Hangman Fruity Shores  <-----                              ";
-    string mFLong = "==================================================================================================================";
-    string mFSidebarL = "\n||  ";
-    string mFSidebarR = "  ||";
-    string crlf = "\n";
-    string tab = "\t";
+// Style elements
+string mFHeader = "                               ----->   This is Hangman Fruity Shores  <-----                              ";
+string mFLong = "==================================================================================================================";
+string mFSidebarL = "\n||  ";
+string mFSidebarR = "  ||";
+string crlf = "\n";
+string tab = "\t";
 
-    // Reuseable textblocks
-    string legoText1 = "Guess the word: ";
-    string legoText2 = " You still have ";
-    string legoText3 = " failed attempts left.";
-    string legoText4 = "";
+void gap() {
+    for (int i = 0; i < 8; i++)
+    {
+      cout << "\n";
+    }
+}
+
+// Reuseable textblocks
+string legoText1 = "Guess the word: ";
+string legoText2 = " You still have ";
+string legoText3 = " failed attempts left.";
+string legoText4 = "";
+
 
 #pragma endregion
 
+int main()
+{
 #pragma region Properties
 
     // Properties
@@ -43,10 +51,27 @@ int main()
 #pragma region Start Message
 
     // Welcome/ Introduction
-    cout << mFLong << mFSidebarL + mFHeader + mFSidebarR << endl;
-    cout << mFSidebarL + "You have to guess a fruit by guessing what letters the word may contain while you have still attempts left." + mFSidebarR << "\n" + mFLong + "\n\n\n" << endl;
+    cout << mFLong << mFSidebarL + mFHeader + mFSidebarR << endl
+         << mFSidebarL + "You have to guess a fruit by guessing what letters the word may contain while you have still attempts left." + mFSidebarR << "\n" + mFLong + "\n\n\n" << endl;
 
 #pragma endregion
+
+#pragma region Menu
+
+    // Menu
+    system("Color 0B");
+        //Color(Background)(Foreground)
+        //0 = Black       8 = Gray
+        //1 = Blue        9 = Light Blue
+        //2 = Green       A = Light Green
+        //3 = Aqua        B = Light Aqua
+        //4 = Red         C = Light Red
+        //5 = Purple      D = Light Purple
+        //6 = Yellow      E = Light Yellow
+        //7 = White       F = Bright White
+
+#pragma endregion
+
 
 #pragma region Random word/ spoofing
 
@@ -93,7 +118,7 @@ int main()
 #pragma endregion
 
 #pragma region Game
-
+    
     while (!wordRevealed && !gameOver) {
         cin >> userInputRaw;
         string userInputRefined;
@@ -126,7 +151,7 @@ int main()
             if (!trySuccess) {
                 tryCounter = tryCounter - 1;
                 tryPond = tryPond.append(userInputRefined + " ");
-                legoText4 = "\nBra..\nThat was not right if that wasnt clear yet thought!\n";
+                legoText4 = "Bra.. That was not right if that wasnt clear yet thought!";
                 if (tryCounter < 1) {
                     gameOver = true;
                 }
@@ -134,42 +159,23 @@ int main()
             if (spoofedFruit.find("_") == string::npos) {
                 wordRevealed = true;
             }
-            cout << crlf << legoText1 + spoofedFruit + legoText2 << tryCounter << legoText3 << crlf << legoText4 << crlf << endl;
-            cout << "Letters you tried before: " << tryPond << endl;
+            cout << crlf << legoText1 + spoofedFruit + legoText2 << tryCounter << legoText3 << crlf << legoText4 << crlf << endl
+                 << "Letters you tried before: " << tryPond << endl;
+
         }
     }
-
+    
     if (gameOver) {
-        cout << "You lost!\nDid you visualized that when you started this?" << crlf << crlf << crlf << crlf << crlf << crlf << crlf << endl;
+        gap();
+        cout << "You lost!\nDid you visualized that when you started this?" << endl;
+        gap();
     }
     if (wordRevealed) {
-        cout << "You won! Real Chadman you are." << crlf << crlf << crlf << crlf << crlf << crlf << crlf << endl;
+        gap();
+        cout << "You won! Real Chadman you are." << endl;
+        gap();
     }
-
-#pragma endregion
-
-#pragma region DEBUG INFOBOX
-
-    //? This infos are just for development - comment out ir #ifdebig them before use
-    // 
-    cout << "DEBUG INFO" << endl;
-    // fruitToFind
-    cout << "Variable:" + tab + "fruitToFind" + crlf << "Actual value:" + tab + fruitToFind + crlf << "Description:" + tab + 
-        "Variable gets randomized value from array." + crlf<< endl;
-    // spoofedFruit
-    cout << "Variable:" + tab + "spoofedFruit" + crlf << "Actual value:" + tab + spoofedFruit + crlf << "Description:" + tab + 
-        "Variable gets \"_\" for each letter in fruitToFind. Whitespaces are excluded" + crlf << endl;
-    // userInputRaw
-    // userInputRefined
-    // tryCounter
-    // posHit
-    // trySuccess
-    // tryPond
-    // wordRevealed
-    // gameOver
-    // size
-    // fruitLength
-
+    
 #pragma endregion
 
     return 0;
