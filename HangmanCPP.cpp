@@ -5,6 +5,7 @@
 #include <iostream>
 #include < iomanip > 
 #include <ios>
+#include <random>
 
 using namespace std;
 
@@ -103,14 +104,20 @@ int main()
         "ugli fruit", "watermelon", "white currant", "white sapote", "yuzu", "zucchini", "acai" 
     };
 
+    // Get the size of the array
     int size = sizeof(fruits) / sizeof(fruits[0]);
-    // Seed the random number generator
-    srand(time(NULL));
-    // Pick a random index from the array
-    int randomIndex = rand() % size;
+
+    // Create a random number engine and seed it with a random device
+    mt19937 engine(random_device{}());
+
+    // Create a uniform integer distribution from 0 to size - 1
+    uniform_int_distribution<int> dist(0, size - 1);
+
+    // Pick a random index from the distribution
+    int randomIndex = dist(engine);
 
     fruitToFind = fruits[randomIndex];
-    
+
     // SpoofedFruit gets \"_\" for each letter in fruitToFind. Whitespaces are excluded
     for (char c : fruitToFind) {
         if (c != ' ') {
