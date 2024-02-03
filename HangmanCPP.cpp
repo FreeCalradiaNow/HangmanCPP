@@ -3,16 +3,17 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include < iomanip > 
+#include <ios>
 
 using namespace std;
 
 #pragma region Textblocks/ Style
 
 // Style elements
-string mFHeader = "                               ----->   This is Hangman Fruity Shores  <-----                              ";
-string mFLong = "==================================================================================================================";
-string mFSidebarL = "\n||  ";
-string mFSidebarR = "  ||";
+string mFHeader = "----->   FREECALRADIAs BORING HANGMAN CPP   <-----";
+string mFSidebarL = "|  ";
+string mFSidebarR = "  |";
 string crlf = "\n";
 string tab = "\t";
 
@@ -48,15 +49,32 @@ int main()
 
 #pragma endregion
 
-#pragma region Start Message
+#pragma region Menu Frame
 
-    // Welcome/ Introduction
-    cout << mFLong << mFSidebarL + mFHeader + mFSidebarR << endl
-         << mFSidebarL + "You have to guess a fruit by guessing what letters the word may contain while you have still attempts left." + mFSidebarR << "\n" + mFLong + "\n\n\n" << endl;
+    // Header _-
+    cout << tab << setfill('_') << setw(56) << '_' << endl
+        << tab << mFSidebarL + mFHeader + mFSidebarR << endl
+        << tab << setfill('-') << setw(56) << '-' << endl;
 
+    // | Start new game: .....1 | How to play: .....3 |
+    cout << tab << mFSidebarL << left << setfill('.') << setw(6) << "Start new game: " << right << setfill('.') << setw(6) << 1 << " " + mFSidebarL
+        << left << setfill('.') << setw(10) << "How to play: " << right << setfill('.') << setw(11) << 3 << mFSidebarR << endl
+    // | Options: ............2 | About: ...........4 |
+        << tab << mFSidebarL << left << setfill('.') << setw(11) << "Options: " << right << setfill('.') << setw(11) << 2 << " " + mFSidebarL
+        << left << setfill('.') << setw(12) << "About: " << right << setfill('.') << setw(12) << 4 << mFSidebarR << endl
+    // |                        | Exit: ............6 |
+        << tab << mFSidebarL << left << setfill(' ') << setw(11) << "  " << right << setfill(' ') << setw(11) << " " << " " + mFSidebarL
+        << left << setfill('.') << setw(12) << "Exit: " << right << setfill('.') << setw(12) << 5 << mFSidebarR << endl
+
+    << tab << setfill('-') << setw(56) << '-' << endl;
+
+    // Prompt to select a number 
+    cout << tab << right << setfill(' ')<< setw(35) << "PRESS NUMBER" << endl;
+
+    //"You have to guess a fruit by guessing what letters the word may contain while you have still attempts left."
 #pragma endregion
 
-#pragma region Menu
+#pragma region Menu Color
 
     // Menu
     system("Color 0B");
