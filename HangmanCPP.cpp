@@ -1,10 +1,7 @@
 #pragma once
 #include <string>
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
+#include <ctime>cvg
 #include < iomanip > 
-#include <ios>
 #include <random>
 
 using namespace std;
