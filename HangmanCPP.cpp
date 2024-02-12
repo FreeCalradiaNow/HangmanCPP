@@ -3,6 +3,7 @@
 #include <ctime>cvg
 #include < iomanip > 
 #include <random>
+#include <iostream>
 
 using namespace std;
 
