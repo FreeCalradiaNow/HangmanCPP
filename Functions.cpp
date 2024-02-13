@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
+#include "Functions.h"
 #include "WordPool.h";
+#include <string>
 
 using namespace std;
 
@@ -26,8 +27,7 @@ int getFruitLength(string fruitToFind, int fruitLength) {
 }
 
 // Returns a int tryCounter based on fruitLength
-int getCounter(string fruitToFind, int fruitLength, int tryCounter) {
-    tryCounter;
+int getCounter(string fruitToFind, int fruitLength) {
     if (fruitLength > 8 && fruitLength < 14) {
         tryCounter = fruitLength + 1;
     }
@@ -41,7 +41,7 @@ int getCounter(string fruitToFind, int fruitLength, int tryCounter) {
 }
 
 // Returns string userInputRefined from string userInputRaw
-string getRefinedLetter(string userInputRaw, string userInputRefined) {
+string getRefinedLetter(string userInputRaw) {
     if (!userInputRaw.empty()) {
         char firstChar = tolower(userInputRaw[0]);
         userInputRefined += firstChar;
@@ -50,7 +50,7 @@ string getRefinedLetter(string userInputRaw, string userInputRefined) {
 }
 
 // Checks whether the user has already typed a letter by checking if it has already been added to spoodedFruit
-bool checkIfTriedBefore(string spoofedFruit, int fruitLength, string userInputRefined, bool triedThatBefore) {
+bool checkIftriedThatBefore(string spoofedFruit, int fruitLength, string userInputRefined) {
     triedThatBefore = false;
     for (string::size_type i = 0; i < fruitLength; ++i) {
         if (spoofedFruit[i] == userInputRefined[0]) {
@@ -62,15 +62,13 @@ bool checkIfTriedBefore(string spoofedFruit, int fruitLength, string userInputRe
 }
 
 // Returns int posHit from string fruitToFind, string userInputRefined - position where letter matches string or npos
-int findLetterPosition(string fruitToFind, string userInputRefined, int posHit) {
-    posHit = -1;
+int findLetterPosition(string fruitToFind, string userInputRefined) {
     posHit = fruitToFind.find(userInputRefined);
     return posHit;
 }
 
 // Checks whether the guessed letter matches one in fruitToFind
-bool checkIfIsTrySuccessfull(int posHit, bool isTrySuccessfull) {
-    isTrySuccessfull = false;
+bool checkIfIsTrySuccessfull(int posHit) {
     if (posHit != string::npos) {
         isTrySuccessfull = true;
     }
@@ -88,7 +86,7 @@ string updateSpoofedFruit(string fruitToFind, int fruitLength, string spoofedFru
 }
 
 // Adds unsuccessfull guess to tryPond
-string addToTryPond(string userInputRefined, bool isTrySuccessfull, string tryPond) {
+string addToTryPond(string userInputRefined, bool isTrySuccessfull) {
     if (!isTrySuccessfull) {
         tryPond = tryPond.append(userInputRefined + " ");
     }
@@ -96,9 +94,33 @@ string addToTryPond(string userInputRefined, bool isTrySuccessfull, string tryPo
 }
 
 // Lowers -1 of tryCounter if try was unsuccessfull
-string addToTryCounter(bool isTrySuccessfull, int tryCounter) {
+int addToTryCounter(bool isTrySuccessfull) {
     if (!isTrySuccessfull) {
         tryCounter = (tryCounter - 1);
     }
     return tryCounter;
+}
+
+// Checks if word has been revealed by checking for npos
+bool checkIfIsWordRevealed(string spoofedFruit) {
+    if (spoofedFruit.find("_") == string::npos) {
+        isWordRevealed = true;
+    }
+    return isWordRevealed;
+}
+
+// Checks if game has been lost by checking the tryCounter
+bool checkIfIsGameOver(int tryCounter) {
+    if (tryCounter < 1) {
+        isGameOver = true;
+    }
+    return isGameOver;
+}
+
+// Checks if game is going on by checking for win/lose conditions
+bool checkIfIsGameGoingOn(bool isWordRevealed, bool isGameOver) {
+    if (!isWordRevealed && !isGameOver) {
+        isGameGoingOn = true;
+    }
+    return isGameGoingOn;
 }
