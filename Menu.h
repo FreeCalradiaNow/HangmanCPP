@@ -14,7 +14,6 @@ static string legoText2 = " You still have ";
 static string legoText3 = " failed attempts left.";
 static string legoText4;
 
-//void gap();
 static void MainMenu();
 static void PressNumber();
 static void GameEnding();
