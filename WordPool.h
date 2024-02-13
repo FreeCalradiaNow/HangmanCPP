@@ -3,7 +3,7 @@
 
 using namespace std;
 
-string fruits[];
-string fruitToFind;
-string pickAWord(string fruits[])
+extern string fruits[100];
+static string fruitToFind;
 
+static string pickAWord(string fruits[]);

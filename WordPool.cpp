@@ -1,14 +1,15 @@
 #pragma once
-#include <string>
-#include <random>
+#include "Functions.h"
+#include "WordPool.h"
 #include <ctime>cvg
 #include <iostream>
-#include "Functions.h"
+#include <random>
+#include <string>
 
 using namespace std;
 
 // Fruit array fruits
-string fruits[] = {
+string fruits[100] = {
     "apple", "apricot", "avocado", "banana", "bilberry", "blackberry", "blackcurrant", "blood orange", "blueberry", "boysenberry", "breadfruit", "cantaloupe", "cherimoya", "cherry",
     "chico fruit", "cloudberry", "coconut", "cranberry", "cucumber", "currant", "custard apple", "damson", "date", "dragonfruit", "durian", "grape", "grapefruit", "guava", "honeydew",
     "huckleberry", "jackfruit", "jambul", "jujube", "kiwano", "kiwi", "kumquat", "lemon", "lime", "loquat", "longan", "lychee", "mandarine", "mango", "mangosteen", "marionberry",
@@ -19,11 +20,10 @@ string fruits[] = {
 
 // Returns a random word from fruits[] as fruitToFind
 string pickAWord(string fruits[]) {
-    string fruitToFind = "";
     int arraySize = (sizeof(fruits) / sizeof(fruits[0]));  // Get the size of the array  
     mt19937 engine(random_device{}());  // Create a random number engine and seed it with a random device
     uniform_int_distribution<int> dist(0, arraySize - 1);  // Create a uniform integer distribution from 0 to size - 1
     int randomIndex = dist(engine);  // Pick a random index from the distribution
-    string fruitToFind = fruits[randomIndex];
+    fruitToFind = fruits[randomIndex];
     return fruitToFind;
 }
